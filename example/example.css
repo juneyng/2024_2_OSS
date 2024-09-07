@@ -1,0 +1,210 @@
+#logo {
+    font-size: 20px;
+    display: inline-block;
+    padding-top: 5px; 
+    padding-bottom: 5px; 
+    margin-right: 16px; /* 오른쪽 마진 1rem = 16px */
+    color: #fff; /* 텍스트 색상을 흰색으로 설정 */
+    text-decoration: none; 
+    display: flex;
+    align-items: center; 
+}
+.text-white a {
+    color: white; /* 글자 색을 흰색으로 설정 */
+    text-decoration: underline; /* 밑줄 표시 */
+}
+
+a:hover {
+    color: white; /* 마우스를 올렸을 때도 흰색 유지 */
+}
+
+a:visited {
+    color: white; /* 방문한 링크도 흰색 유지 */
+}
+.container {
+    background-color: #212529;
+    width: 100%;
+    padding-right: 20px;
+    padding-left: 4px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.collapse-1 {
+    background-color: #212529;
+    width: 100%;
+    padding: 24px;
+    display: flex; /* Flexbox를 사용하여 좌우로 배치 */
+    justify-content: space-between; /* 좌우로 공간을 균등하게 나눔 */
+}
+.collapse-1 p{
+    color:rgba(222, 226, 230, 0.75);
+}
+.row{
+    width: 1320px;
+    margin-right: auto;
+    margin-left: auto;
+}
+.collapse-1-left{
+    width: 770px;
+    padding:2px;
+}
+.collapse-1-right{
+    width: 440px;
+    position: relative;
+    left:100px;
+}
+@media (max-width: 768px) { /*반응형으로 화면이 줄어들면 'Contact'가 아래로 배치되도록 설정함.*/
+    .collapse-1 {
+        flex-direction: column; /* 좌우 배치를 위아래로 변경 */
+        align-items: center; /* 가운데 정렬 */
+    }
+
+    .collapse-1-left,
+    .collapse-1-right {
+        width: 100%; /* 전체 너비로 설정 */
+        left: 0px; /* 왼쪽에서의 위치 조정 */
+        margin-bottom: 20px; /* 아래쪽에 여백 추가 */
+    }
+}
+/*-------------- 여기까지 header부분 ------------*/
+.center-container{
+    width:100%;
+    height: 424px;
+    background-color: white;
+    padding-top: 48px;
+    padding-bottom: 48px;
+    padding-left: 12px;
+    padding-right: 12px;
+}
+.center-row{
+    width:79.91%;
+    height:100%;
+    background-color: white;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+    padding: 48px 0px 48px 0px;
+}
+
+.center-row h1{
+    font:40px system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif;
+    font-weight: 300;
+}
+.center-row p{
+    width: 43%;
+    margin: 0 auto; /* 가로 중앙 정렬 */
+    font-size: 20px; 
+    font-weight: 300; 
+    color: #6c757d; /* text-body-secondary 클래스에 해당하는 약간 어두운 텍스트 색상 */
+    margin-bottom:16px;
+}
+.center-button{
+    height:54px;
+    margin:8px 0px 16px 0px;
+    margin-top:20px;
+}
+.center-button a{
+    font-size: 16px;
+    padding: 7px 12px; /* 패딩 설정 */
+    color: white; /* 글자 색상을 흰색으로 설정 */
+    border: none; /* 경계선 없애기 */
+    border-radius: 6px; /* 둥근 경계선 설정 */
+    text-decoration: none; /* 밑줄 제거 */
+    display: inline-block; /* 링크가 블록처럼 작동하도록 설정 */
+    text-align: center; /* 텍스트 가운데 정렬 */
+    cursor: pointer; /* 마우스 포인터를 손가락 모양으로 변경 */
+}
+#bt1{
+    background-color: #0d6efd; /* 버튼 색상 설정 */
+}
+#bt2{
+    background-color: #6c757d;
+}
+
+#bt1:hover {
+    background-color: #0b5ed7; /* 호버 시 색상 변경 */
+}
+#bt2:hover{
+    background-color: #616970;
+}
+
+/*여기부터 below 부분*/
+
+.below-container{
+    width:100%;
+    height: 1262px;
+    color: #212529;
+    background-color: #f8f9fa;
+    padding-top: 48px;
+    padding-bottom: 48px;
+    padding-left: 12px;
+    padding-right: 12px;
+}
+.below-row {
+    background-color: white;
+    width: 68.5%; /* 전체 화면 너비 */
+    margin: 0 auto; /* 중앙 정렬 */
+    height: 1182px;
+    display: grid; /* Grid 레이아웃 적용 */
+    grid-template-columns: repeat(3, 1fr); /* 3개의 열로 구성 */
+    grid-template-rows: repeat(3, 1fr); /* 3개의 행으로 구성 */
+    gap: 20px; /* 각 div 사이의 간격 */
+}
+
+.col {
+    border: 1px solid #dcdcdc; /* 2px 두께의 실선, 검정색 */
+    width: 100%; /* 개별 col의 너비를 부모 그리드에 맞춤 */
+    border-radius: 4px; /* 둥근 경계선 */
+    color: white;
+}
+.card-img{
+    background-color: rgb(85, 89, 92);
+    height:225px;
+    border-radius: 4px 4px 0 0; /* 둥근 경계선 */
+    display: flex;
+    justify-content: center; /* 가로 중앙 정렬 */
+    align-items: center; /* 세로 중앙 정렬 */
+    text-align: center; /* 텍스트 자체의 가로 중앙 정렬 */
+    font:18px system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif;
+    font-weight: 400;
+}
+.card-txt{
+    font:16px system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif;
+    color:black;
+    height:155px;
+    padding:16px;
+    line-height: 1.5; /* 줄 간격을 1.5배로 설정 */
+}
+.below-btn{
+    
+    margin-top: 16px;
+}
+.below-btn1,
+.below-btn2 {
+    display: inline-block; /* 글자 길이에 맞게 크기 조정 */
+    margin: 0; /* 마진을 없애서 붙도록 설정 */
+    padding: 0; /* 필요에 따라 패딩도 조정 */
+}
+
+.below-btn1 button {
+    color: #6c757d;
+    font-size: 14px;
+    padding: 4px 8px;
+    border: 1px solid black;
+    border-radius: 4px 0 0 4px;
+    background-color: white;
+    cursor: pointer;
+    margin: 0; /* 버튼 간의 마진을 없앰 */
+}
+
+.below-btn2 button {
+    color: #6c757d;
+    font-size: 14px;
+    padding: 4px 8px;
+    border: 1px solid black;
+    border-radius: 0 4px 4px 0;
+    background-color: white;
+    cursor: pointer;
+    margin: 0; /* 버튼 간의 마진을 없앰 */
+}
