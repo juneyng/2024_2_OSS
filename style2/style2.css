@@ -52,7 +52,7 @@ h1, h2, h3 {
 }
 
 #green {
-    background-color:#04AA6D;
+    background-color:#04AA6D; /*STYLESHEET 3 초록색 표현*/
  }
 
 .menuitem:hover {
