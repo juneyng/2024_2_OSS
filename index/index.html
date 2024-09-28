@@ -25,7 +25,7 @@
             class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start"
           >
             <a
-              href="http://127.0.0.1:3000/index/index.html"
+              href="https://22100566-assignment2-2.netlify.app/index/index.html"
               class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none"
             >
               </svg>
@@ -37,7 +37,7 @@
             >
               <li>
                 <a
-                  href="http://127.0.0.1:3000/index/index.html"
+                  href="https://22100566-assignment2-2.netlify.app//index/index.html"
                   class="nav-link text-white bg-primary rounded"
                 >
                   Home
@@ -45,7 +45,7 @@
               </li>
               <li>
                 <a
-                  href="http://127.0.0.1:3000/add/add.html"
+                  href="https://22100566-assignment2-2.netlify.app//add/add.html"
                   class="nav-link text-white rounded"
                 >
                   Add page
@@ -53,7 +53,7 @@
               </li>
               <li>
                 <a
-                  href="http://127.0.0.1:3000/edit/edit.html"
+                  href="https://22100566-assignment2-2.netlify.app//edit/edit.html"
                   class="nav-link text-white rounded"
                 >
                   Edit page
@@ -61,7 +61,7 @@
               </li>
               <li>
                 <a
-                  href="http://127.0.0.1:3000/view/view.html"
+                  href="https://22100566-assignment2-2.netlify.app//view/view.html"
                   class="nav-link text-white rounded"
                 >
                   View Page
@@ -95,7 +95,7 @@
         <h2>나의 기록</h2>
         <!-- 버튼 그룹 -->
         <div>
-          <a href="http://127.0.0.1:3000/add/add.html" class="btn btn-primary"
+          <a href="https://22100566-assignment2-2.netlify.app/add/add.html" class="btn btn-primary"
             >추가</a
           >
           <button id="resetStorage" class="btn btn-danger">초기화</button>
@@ -269,7 +269,7 @@
       // 테이블 행 전체를 클릭하면 view 페이지로 이동하도록 설정
       row.style.cursor = "pointer"; // 클릭 가능하게 마우스 포인터 변경
       row.onclick = function () {
-        window.location.href = `http://127.0.0.1:3000/view/view.html?index=${index}`;
+        window.location.href = `https://22100566-assignment2-2.netlify.app/view/view.html?index=${index}`;
       };
 
       // 휴지통 아이콘 클릭 시 삭제 동작 처리 (버블링 중단)
@@ -281,7 +281,7 @@
       // 펜 모양 아이콘 클릭 시 view 페이지로 이동 (버블링 중단)
       row.querySelector(".edit-icon").onclick = function (event) {
         event.stopPropagation(); // 클릭 이벤트가 행에 전파되지 않도록 함
-        window.location.href = `http://127.0.0.1:3000/edit/edit.html?index=${index}`;
+        window.location.href = `https://22100566-assignment2-2.netlify.app/edit/edit.html?index=${index}`;
       };
 
       tableBody.appendChild(row);
