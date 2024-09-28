@@ -235,67 +235,72 @@
         }
       }
     
-      // 페이지가 로드될 때 Local Storage에서 데이터를 불러와서 테이블을 생성
       window.onload = function () {
-        initializeDefaultData();
-    
-        const exerciseData = JSON.parse(localStorage.getItem("exerciseData")) || [];
-        const tableBody = document.getElementById("recordTableBody");
-    
-        exerciseData.forEach((record, index) => {
-          const row = document.createElement("tr");
-    
-          // duration_start와 duration_end를 '오전/오후 ~시 ~분' 형식으로 변환
-          const formattedStart = record.duration_start
-            ? formatTime(record.duration_start)
-            : "";
-          const formattedEnd = record.duration_end
-            ? formatTime(record.duration_end)
-            : "";
-    
-          // 각 테이블 행에 데이터를 view 페이지로 넘기기 위한 링크 추가
-          row.innerHTML = `
-                <td>${index + 1}</td>
-                <td>${record.intensity}</td>
-                <td>${record.exerciseName}</td>
-                <td>${record.location}</td>
-                <td>${record.date}</td>
-                <td>${formattedStart} ~ ${formattedEnd}</td>
-                <td>
-                  <a href="#"><i class="bi bi-pencil-square"></i></a>
-                  <a href="#" class="delete-icon" data-index="${index}"><i class="bi bi-trash"></i></a>
-                </td>
-              `;
-    
-          // 테이블 행 전체를 클릭하면 view 페이지로 이동하도록 설정
-          row.style.cursor = "pointer"; // 클릭 가능하게 마우스 포인터 변경
-          row.onclick = function () {
-            window.location.href = `http://127.0.0.1:3000/view/view.html?index=${index}`;
-          };
-    
-          // 휴지통 아이콘 클릭 시 삭제 동작 처리 (버블링 중단)
-          row.querySelector(".delete-icon").onclick = function (event) {
-            event.stopPropagation(); // 클릭 이벤트가 행에 전파되지 않도록 함
-            deleteRecord(index);
-          };
-    
-          tableBody.appendChild(row);
-        });
-    
-        document.getElementById("resetStorage").addEventListener("click", function () {
-          localStorage.clear();
-          alert("Local Storage가 초기화되었습니다.");
-          window.location.reload();
-        });
+    initializeDefaultData();
+
+    const exerciseData = JSON.parse(localStorage.getItem("exerciseData")) || [];
+    const tableBody = document.getElementById("recordTableBody");
+
+    exerciseData.forEach((record, index) => {
+      const row = document.createElement("tr");
+
+      // duration_start와 duration_end를 '오전/오후 ~시 ~분' 형식으로 변환
+      const formattedStart = record.duration_start
+        ? formatTime(record.duration_start)
+        : "";
+      const formattedEnd = record.duration_end
+        ? formatTime(record.duration_end)
+        : "";
+
+      // 각 테이블 행에 데이터를 view 페이지로 넘기기 위한 링크 추가
+      row.innerHTML = `
+            <td>${index + 1}</td>
+            <td>${record.intensity}</td>
+            <td>${record.exerciseName}</td>
+            <td>${record.location}</td>
+            <td>${record.date}</td>
+            <td>${formattedStart} ~ ${formattedEnd}</td>
+            <td>
+              <a href="#" class="edit-icon" data-index="${index}"><i class="bi bi-pencil-square"></i></a>
+              <a href="#" class="delete-icon" data-index="${index}"><i class="bi bi-trash"></i></a>
+            </td>
+          `;
+
+      // 테이블 행 전체를 클릭하면 view 페이지로 이동하도록 설정
+      row.style.cursor = "pointer"; // 클릭 가능하게 마우스 포인터 변경
+      row.onclick = function () {
+        window.location.href = `http://127.0.0.1:3000/view/view.html?index=${index}`;
       };
-    
-      function deleteRecord(index) {
-        const exerciseData = JSON.parse(localStorage.getItem("exerciseData")) || [];
-        exerciseData.splice(index, 1);
-        localStorage.setItem("exerciseData", JSON.stringify(exerciseData));
-        window.location.reload();
-      }
-    </script>
+
+      // 휴지통 아이콘 클릭 시 삭제 동작 처리 (버블링 중단)
+      row.querySelector(".delete-icon").onclick = function (event) {
+        event.stopPropagation(); // 클릭 이벤트가 행에 전파되지 않도록 함
+        deleteRecord(index);
+      };
+
+      // 펜 모양 아이콘 클릭 시 view 페이지로 이동 (버블링 중단)
+      row.querySelector(".edit-icon").onclick = function (event) {
+        event.stopPropagation(); // 클릭 이벤트가 행에 전파되지 않도록 함
+        window.location.href = `http://127.0.0.1:3000/edit/edit.html?index=${index}`;
+      };
+
+      tableBody.appendChild(row);
+    });
+
+    document.getElementById("resetStorage").addEventListener("click", function () {
+      localStorage.clear();
+      alert("Local Storage가 초기화되었습니다.");
+      window.location.reload();
+    });
+  };
+
+  function deleteRecord(index) {
+    const exerciseData = JSON.parse(localStorage.getItem("exerciseData")) || [];
+    exerciseData.splice(index, 1);
+    localStorage.setItem("exerciseData", JSON.stringify(exerciseData));
+    window.location.reload();
+  }
+</script>
     
     
   </body>
