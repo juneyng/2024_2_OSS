@@ -119,7 +119,19 @@
         </tbody>
       </table>
     </div>
-
+    <nav aria-label="Page navigation">
+      <ul class="pagination justify-content-center">
+        <li class="page-item"><a class="page-link" href="#">이전</a></li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item"><a class="page-link" href="#">다음</a></li>
+      </ul>
+    </nav>
+    <footer class="text-center mt-5">
+      <hr>
+      <p class="text-muted small">22100566 이준영 Assignment2-2</p>
+    </footer>
     <script>
       // 시간을 '오전/오후' 형식으로 변환하는 함수
       function formatTime(timeString) {
@@ -131,39 +143,108 @@
         const period = isAM ? "오전" : "오후";
         return `${period} ${formattedHour}시 ${formattedMinutes}분`;
       }
-
+    
       // 기본 데이터가 없을 경우 초기 데이터를 추가하는 함수
       function initializeDefaultData() {
         const defaultData = [
-          { intensity: "*", exerciseName: "평봉 달리기", location: "평봉", date: "2022-10-01", duration_start: "01:39:26", duration_end: "01:39:26" },
-          { intensity: "**", exerciseName: "팔굽혀펴기", location: "집", date: "2022-09-28", duration_start: "00:09:26", duration_end: "01:39:26" },
-          { intensity: "**", exerciseName: "플랭크", location: "집", date: "2022-09-28", duration_start: "00:06:20", duration_end: "01:39:26" },
-          { intensity: "***", exerciseName: "풀 업", location: "헬스장", date: "2022-09-28", duration_start: "00:05:26", duration_end: "01:39:26" },
-          { intensity: "*", exerciseName: "체스트프레스", location: "헬스장", date: "2022-09-28", duration_start: "00:10:26", duration_end: "01:39:26" },
-          { intensity: "***", exerciseName: "산악 자전거", location: "곤륜산", date: "2022-09-28", duration_start: "02:58:26", duration_end: "01:39:26" },
-          { intensity: "**", exerciseName: "사이드 레터럴 레이즈", location: "헬스장", date: "2022-09-28", duration_start: "00:29:26", duration_end: "01:39:26" },
-          { intensity: "***", exerciseName: "바다 수영", location: "영일대", date: "2022-09-28", duration_start: "10:39:26", duration_end: "01:39:26" },
-          { intensity: "**", exerciseName: "테니스", location: "테니스장", date: "2022-09-28", duration_start: "02:36:47", duration_end: "01:39:26" },
-          { intensity: "**", exerciseName: "배드민턴", location: "실내 체육관", date: "2022-09-28", duration_start: "01:19:16", duration_end: "01:39:26" },
+          {
+            intensity: "*",
+            exerciseName: "평봉 달리기",
+            location: "평봉",
+            date: "2022-10-01",
+            duration_start: "01:39:26",
+            duration_end: "01:39:26",
+          },
+          {
+            intensity: "**",
+            exerciseName: "팔굽혀펴기",
+            location: "집",
+            date: "2022-09-28",
+            duration_start: "00:09:26",
+            duration_end: "01:39:26",
+          },
+          {
+            intensity: "**",
+            exerciseName: "플랭크",
+            location: "집",
+            date: "2022-09-28",
+            duration_start: "00:06:20",
+            duration_end: "01:39:26",
+          },
+          {
+            intensity: "***",
+            exerciseName: "풀 업",
+            location: "헬스장",
+            date: "2022-09-28",
+            duration_start: "00:05:26",
+            duration_end: "01:39:26",
+          },
+          {
+            intensity: "*",
+            exerciseName: "체스트프레스",
+            location: "헬스장",
+            date: "2022-09-28",
+            duration_start: "00:10:26",
+            duration_end: "01:39:26",
+          },
+          {
+            intensity: "***",
+            exerciseName: "산악 자전거",
+            location: "곤륜산",
+            date: "2022-09-28",
+            duration_start: "02:58:26",
+            duration_end: "01:39:26",
+          },
+          {
+            intensity: "**",
+            exerciseName: "사이드 레터럴 레이즈",
+            location: "헬스장",
+            date: "2022-09-28",
+            duration_start: "00:29:26",
+            duration_end: "01:39:26",
+          },
+          {
+            intensity: "***",
+            exerciseName: "바다 수영",
+            location: "영일대",
+            date: "2022-09-28",
+            duration_start: "10:39:26",
+            duration_end: "01:39:26",
+          },
+          {
+            intensity: "**",
+            exerciseName: "테니스",
+            location: "테니스장",
+            date: "2022-09-28",
+            duration_start: "02:36:47",
+            duration_end: "01:39:26",
+          },
+          {
+            intensity: "**",
+            exerciseName: "배드민턴",
+            location: "실내 체육관",
+            date: "2022-09-28",
+            duration_start: "01:19:16",
+            duration_end: "01:39:26",
+          },
         ];
-
+    
         let exerciseData = JSON.parse(localStorage.getItem("exerciseData")) || [];
         if (exerciseData.length === 0) {
           localStorage.setItem("exerciseData", JSON.stringify(defaultData));
         }
       }
-
+    
       // 페이지가 로드될 때 Local Storage에서 데이터를 불러와서 테이블을 생성
       window.onload = function () {
         initializeDefaultData();
-
-        const exerciseData =
-          JSON.parse(localStorage.getItem("exerciseData")) || [];
+    
+        const exerciseData = JSON.parse(localStorage.getItem("exerciseData")) || [];
         const tableBody = document.getElementById("recordTableBody");
-
+    
         exerciseData.forEach((record, index) => {
           const row = document.createElement("tr");
-
+    
           // duration_start와 duration_end를 '오전/오후 ~시 ~분' 형식으로 변환
           const formattedStart = record.duration_start
             ? formatTime(record.duration_start)
@@ -171,48 +252,51 @@
           const formattedEnd = record.duration_end
             ? formatTime(record.duration_end)
             : "";
-
+    
           // 각 테이블 행에 데이터를 view 페이지로 넘기기 위한 링크 추가
           row.innerHTML = `
-            <td>${index + 1}</td>
-            <td><a href="http://127.0.0.1:3000/view/view.html?index=${index}">${
-            record.intensity
-          }</a></td>
-            <td><a href="http://127.0.0.1:3000/view/view.html?index=${index}">${
-            record.exerciseName
-          }</a></td>
-            <td><a href="http://127.0.0.1:3000/view/view.html?index=${index}">${
-            record.location
-          }</a></td>
-            <td><a href="http://127.0.0.1:3000/view/view.html?index=${index}">${
-            record.date
-          }</a></td>
-            <td><a href="http://127.0.0.1:3000/view/view.html?index=${index}">${formattedStart} ~ ${formattedEnd}</a></td>
-            <td>
-              <a href="#"><i class="bi bi-pencil-square"></i></a>
-              <a href="#" onclick="deleteRecord(${index})"><i class="bi bi-trash"></i></a>
-            </td>
-          `;
-
+                <td>${index + 1}</td>
+                <td>${record.intensity}</td>
+                <td>${record.exerciseName}</td>
+                <td>${record.location}</td>
+                <td>${record.date}</td>
+                <td>${formattedStart} ~ ${formattedEnd}</td>
+                <td>
+                  <a href="#"><i class="bi bi-pencil-square"></i></a>
+                  <a href="#" class="delete-icon" data-index="${index}"><i class="bi bi-trash"></i></a>
+                </td>
+              `;
+    
+          // 테이블 행 전체를 클릭하면 view 페이지로 이동하도록 설정
+          row.style.cursor = "pointer"; // 클릭 가능하게 마우스 포인터 변경
+          row.onclick = function () {
+            window.location.href = `http://127.0.0.1:3000/view/view.html?index=${index}`;
+          };
+    
+          // 휴지통 아이콘 클릭 시 삭제 동작 처리 (버블링 중단)
+          row.querySelector(".delete-icon").onclick = function (event) {
+            event.stopPropagation(); // 클릭 이벤트가 행에 전파되지 않도록 함
+            deleteRecord(index);
+          };
+    
           tableBody.appendChild(row);
         });
-
-        document
-          .getElementById("resetStorage")
-          .addEventListener("click", function () {
-            localStorage.clear();
-            alert("Local Storage가 초기화되었습니다.");
-            window.location.reload();
-          });
+    
+        document.getElementById("resetStorage").addEventListener("click", function () {
+          localStorage.clear();
+          alert("Local Storage가 초기화되었습니다.");
+          window.location.reload();
+        });
       };
-
+    
       function deleteRecord(index) {
-        const exerciseData =
-          JSON.parse(localStorage.getItem("exerciseData")) || [];
+        const exerciseData = JSON.parse(localStorage.getItem("exerciseData")) || [];
         exerciseData.splice(index, 1);
         localStorage.setItem("exerciseData", JSON.stringify(exerciseData));
         window.location.reload();
       }
     </script>
+    
+    
   </body>
 </html>
