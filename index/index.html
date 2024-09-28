@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link rel="stylesheet" href="./my.css" />
+    <title>Index Page</title>
+  </head>
+  <body>
+    <header>
+      <!--Header Part-->
+      <div class="px-3 py-2 text-bg-dark border-bottom">
+        <div class="container">
+          <div
+            class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start"
+          >
+            <a
+              href="http://127.0.0.1:3000/index/index.html"
+              class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none"
+            >
+              </svg>
+              운동 기록 관리
+            </a>
+
+            <ul
+              class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small"
+            >
+              <li>
+                <a
+                  href="http://127.0.0.1:3000/index/index.html"
+                  class="nav-link text-white bg-primary rounded"
+                >
+                  Home
+                </a>
+              </li>
+              <li>
+                <a
+                  href="http://127.0.0.1:3000/add/add.html"
+                  class="nav-link text-white rounded"
+                >
+                  Add page
+                </a>
+              </li>
+              <li>
+                <a
+                  href="http://127.0.0.1:3000/edit/edit.html"
+                  class="nav-link text-white rounded"
+                >
+                  Edit page
+                </a>
+              </li>
+              <li>
+                <a
+                  href="http://127.0.0.1:3000/view/view.html"
+                  class="nav-link text-white rounded"
+                >
+                  View Page
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="px-3 py-2 border-bottom mb-3">
+        <div class="container d-flex flex-wrap justify-content-center">
+          <form
+            class="col-12 col-lg-auto mb-2 mb-lg-0 d-flex justify-content-center"
+            role="search"
+          >
+            <input
+              size="50;"
+              type="search"
+              class="form-control"
+              placeholder="Search..."
+              aria-label="Search"
+            />
+          </form>
+        </div>
+      </div>
+    </header>
+
+    <div class="container my-4">
+      <!-- 상단에 '나의 기록' 제목과 오른쪽의 버튼들 -->
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>나의 기록</h2>
+        <!-- 버튼 그룹 -->
+        <div>
+          <a href="http://127.0.0.1:3000/add/add.html" class="btn btn-primary"
+            >추가</a
+          >
+          <button id="resetStorage" class="btn btn-danger">초기화</button>
+        </div>
+      </div>
+
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>운동 강도</th>
+            <th>운동명</th>
+            <th>장소</th>
+            <th>일자</th>
+            <th>운동 시간</th>
+            <th>메뉴</th>
+          </tr>
+        </thead>
+        <tbody id="recordTableBody">
+          <!-- Local Storage에서 데이터를 불러와서 동적으로 생성 -->
+        </tbody>
+      </table>
+    </div>
+
+    <script>
+      // 시간을 '오전/오후' 형식으로 변환하는 함수
+      function formatTime(timeString) {
+        const [hours, minutes] = timeString.split(":");
+        const hourNum = parseInt(hours, 10);
+        const isAM = hourNum < 12;
+        const formattedHour = String(hourNum % 12 || 12).padStart(2, "0");
+        const formattedMinutes = String(minutes).padStart(2, "0");
+        const period = isAM ? "오전" : "오후";
+        return `${period} ${formattedHour}시 ${formattedMinutes}분`;
+      }
+
+      // 기본 데이터가 없을 경우 초기 데이터를 추가하는 함수
+      function initializeDefaultData() {
+        const defaultData = [
+          { intensity: "*", exerciseName: "평봉 달리기", location: "평봉", date: "2022-10-01", duration_start: "01:39:26", duration_end: "01:39:26" },
+          { intensity: "**", exerciseName: "팔굽혀펴기", location: "집", date: "2022-09-28", duration_start: "00:09:26", duration_end: "01:39:26" },
+          { intensity: "**", exerciseName: "플랭크", location: "집", date: "2022-09-28", duration_start: "00:06:20", duration_end: "01:39:26" },
+          { intensity: "***", exerciseName: "풀 업", location: "헬스장", date: "2022-09-28", duration_start: "00:05:26", duration_end: "01:39:26" },
+          { intensity: "*", exerciseName: "체스트프레스", location: "헬스장", date: "2022-09-28", duration_start: "00:10:26", duration_end: "01:39:26" },
+          { intensity: "***", exerciseName: "산악 자전거", location: "곤륜산", date: "2022-09-28", duration_start: "02:58:26", duration_end: "01:39:26" },
+          { intensity: "**", exerciseName: "사이드 레터럴 레이즈", location: "헬스장", date: "2022-09-28", duration_start: "00:29:26", duration_end: "01:39:26" },
+          { intensity: "***", exerciseName: "바다 수영", location: "영일대", date: "2022-09-28", duration_start: "10:39:26", duration_end: "01:39:26" },
+          { intensity: "**", exerciseName: "테니스", location: "테니스장", date: "2022-09-28", duration_start: "02:36:47", duration_end: "01:39:26" },
+          { intensity: "**", exerciseName: "배드민턴", location: "실내 체육관", date: "2022-09-28", duration_start: "01:19:16", duration_end: "01:39:26" },
+        ];
+
+        let exerciseData = JSON.parse(localStorage.getItem("exerciseData")) || [];
+        if (exerciseData.length === 0) {
+          localStorage.setItem("exerciseData", JSON.stringify(defaultData));
+        }
+      }
+
+      // 페이지가 로드될 때 Local Storage에서 데이터를 불러와서 테이블을 생성
+      window.onload = function () {
+        initializeDefaultData();
+
+        const exerciseData =
+          JSON.parse(localStorage.getItem("exerciseData")) || [];
+        const tableBody = document.getElementById("recordTableBody");
+
+        exerciseData.forEach((record, index) => {
+          const row = document.createElement("tr");
+
+          // duration_start와 duration_end를 '오전/오후 ~시 ~분' 형식으로 변환
+          const formattedStart = record.duration_start
+            ? formatTime(record.duration_start)
+            : "";
+          const formattedEnd = record.duration_end
+            ? formatTime(record.duration_end)
+            : "";
+
+          // 각 테이블 행에 데이터를 view 페이지로 넘기기 위한 링크 추가
+          row.innerHTML = `
+            <td>${index + 1}</td>
+            <td><a href="http://127.0.0.1:3000/view/view.html?index=${index}">${
+            record.intensity
+          }</a></td>
+            <td><a href="http://127.0.0.1:3000/view/view.html?index=${index}">${
+            record.exerciseName
+          }</a></td>
+            <td><a href="http://127.0.0.1:3000/view/view.html?index=${index}">${
+            record.location
+          }</a></td>
+            <td><a href="http://127.0.0.1:3000/view/view.html?index=${index}">${
+            record.date
+          }</a></td>
+            <td><a href="http://127.0.0.1:3000/view/view.html?index=${index}">${formattedStart} ~ ${formattedEnd}</a></td>
+            <td>
+              <a href="#"><i class="bi bi-pencil-square"></i></a>
+              <a href="#" onclick="deleteRecord(${index})"><i class="bi bi-trash"></i></a>
+            </td>
+          `;
+
+          tableBody.appendChild(row);
+        });
+
+        document
+          .getElementById("resetStorage")
+          .addEventListener("click", function () {
+            localStorage.clear();
+            alert("Local Storage가 초기화되었습니다.");
+            window.location.reload();
+          });
+      };
+
+      function deleteRecord(index) {
+        const exerciseData =
+          JSON.parse(localStorage.getItem("exerciseData")) || [];
+        exerciseData.splice(index, 1);
+        localStorage.setItem("exerciseData", JSON.stringify(exerciseData));
+        window.location.reload();
+      }
+    </script>
+  </body>
+</html>
