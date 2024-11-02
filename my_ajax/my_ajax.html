@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Student Management System</title>
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.js"
+      integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+      crossorigin="anonymous"
+    ></script>
+    <link rel="shortcut icon" href="../img/star.jpg" />
+    <link rel="stylesheet" href="my_ajax.css" />
+  </head>
+  <body>
+    <h1>Student Management System</h1>
+    <div class="main-container">
+      <div class="form-container">
+        <button id="btnStu" onclick="getDataFromJSONFile()">Get DATA</button
+        ><br /><br />
+        NAME: <br /><input type="text" id="student_name" /><br />
+        AGE: <br /><input type="number" id="student_age" /><br />
+        GENDER: <br />
+        <select id="student_gender">
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+        </select>
+        <br />
+        STUDENT ID: <br /><input
+          type="number"
+          id="student_studentID"
+        /><br /><br />
+        <button id="btnAdd" onclick="createDataToJSONFile()">Create DATA</button
+        ><br /><br />
+        ID: <br /><input type="text" id="student_id" /><br /><br />
+        <button onclick="updateDataToJSONFile()">Update DATA</button>
+        <button onclick="deleteDataFromJSONFile()">Delete DATA</button>
+      </div>
+
+      <div id="div_students" class="students-container"></div>
+    </div>
+
+    <script>
+      function getDataFromJSONFile() {
+        const xhr = new XMLHttpRequest();
+
+        xhr.open("GET", "http://localhost:3001/students");
+        xhr.setRequestHeader("content-type", "application/json");
+        xhr.send();
+        xhr.onload = () => {
+          if (xhr.status === 200) {
+            $("#div_students").html("");
+            let students = JSON.parse(xhr.response);
+            students.forEach((item) => {
+              $("#div_students").append(
+                `<div>ID: ${item.id} | Name: ${item.name} | Age: ${item.age} | Gender: ${item.gender} | Student ID: ${item.studentID}</div>`
+              );
+            });
+          }
+        };
+      }
+
+      function createDataToJSONFile() {
+        const xhrGet = new XMLHttpRequest();
+        xhrGet.open("GET", "http://localhost:3001/students");
+        xhrGet.setRequestHeader(
+          "content-type",
+          "application/json; charset=UTF-8"
+        );
+        xhrGet.send();
+        xhrGet.onload = () => {
+          if (xhrGet.status === 200) {
+            const students = JSON.parse(xhrGet.response);
+            const lastId = students.length
+              ? parseInt(students[students.length - 1].id)
+              : 0;
+            const newId = lastId + 1;
+
+            const xhrPost = new XMLHttpRequest();
+            xhrPost.open("POST", "http://localhost:3001/students");
+            xhrPost.setRequestHeader(
+              "content-type",
+              "application/json; charset=UTF-8"
+            );
+
+            let data = {
+              id: String(newId),
+              name: $("#student_name").val(),
+              age: $("#student_age").val(),
+              gender: $("#student_gender").val(),
+              studentID: parseInt($("#student_studentID").val()),
+            };
+
+            xhrPost.send(JSON.stringify(data));
+            xhrPost.onload = () => {
+              if (xhrPost.status === 201) {
+                alert("등록 성공!");
+                getDataFromJSONFile();
+              }
+            };
+          }
+        };
+      }
+
+      function updateDataToJSONFile() {
+        let id = $("#student_id").val();
+        alert(id);
+        const xhr = new XMLHttpRequest();
+        xhr.open("PUT", "http://localhost:3001/students/" + id);
+        xhr.setRequestHeader("content-type", "application/json; charset=UTF-8");
+
+        let data = {
+          name: $("#student_name").val(),
+          age: $("#student_age").val(),
+          gender: $("#student_gender").val(),
+          studentID: parseInt($("#student_studentID").val()),
+        };
+
+        xhr.send(JSON.stringify(data));
+        xhr.onload = () => {
+          alert(xhr.status);
+          if (xhr.status === 200) {
+            alert("수정 성공!");
+            getDataFromJSONFile();
+          }
+        };
+      }
+
+      function deleteDataFromJSONFile() {
+        let id = $("#student_id").val();
+        if (!id) {
+          alert("삭제할 ID를 입력하세요.");
+          return;
+        }
+
+        const xhr = new XMLHttpRequest();
+        xhr.open("DELETE", "http://localhost:3001/students/" + id);
+        xhr.setRequestHeader("content-type", "application/json; charset=UTF-8");
+        xhr.send();
+
+        xhr.onload = () => {
+          if (xhr.status === 200) {
+            alert("삭제 성공!");
+            getDataFromJSONFile();
+          } else {
+            alert("삭제 실패: 해당 ID가 존재하지 않습니다.");
+          }
+        };
+      }
+    </script>
+  </body>
+</html>
