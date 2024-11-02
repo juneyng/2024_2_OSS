@@ -106,7 +106,6 @@
 
       function updateDataToJSONFile() {
         let id = $("#student_id").val();
-        alert(id);
         const xhr = new XMLHttpRequest();
         xhr.open("PUT", "http://localhost:3001/students/" + id);
         xhr.setRequestHeader("content-type", "application/json; charset=UTF-8");
@@ -120,7 +119,6 @@
 
         xhr.send(JSON.stringify(data));
         xhr.onload = () => {
-          alert(xhr.status);
           if (xhr.status === 200) {
             alert("수정 성공!");
             getDataFromJSONFile();

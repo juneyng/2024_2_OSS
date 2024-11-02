@@ -1,74 +1,116 @@
 {
-    "students": [
-      {
-        "name": "Lee JunYoung",
-        "age": "123",
-        "id": "1",
-        "gender": "male",
-        "studentID": 22100566
-      },
-      {
-        "id": "2",
-        "name": "James",
-        "age": "100",
-        "gender": "Female",
-        "studentID": 22222222
-      },
-      {
-        "id": "3",
-        "name": "Jack",
-        "age": "18",
-        "gender": "Male",
-        "studentID": 23402043
-      },
-      {
-        "id": "4",
-        "name": "Stella",
-        "age": "23",
-        "gender": "Female",
-        "studentID": 21120394
-      },
-      {
-        "id": "5",
-        "name": "Jullie",
-        "age": "30",
-        "gender": "Female",
-        "studentID": 22004932
-      },
-      {
-        "id": "6",
-        "name": "John",
-        "age": "24",
-        "gender": "Male",
-        "studentID": 22004958
-      },
-      {
-        "name": "Sam",
-        "age": "21",
-        "gender": "Male",
-        "studentID": 22004933,
-        "id": "7"
-      },
-      {
-        "id": "8",
-        "name": "Jelly",
-        "age": "19",
-        "gender": "Female",
-        "studentID": 24004928
-      },
-      {
-        "id": "9",
-        "name": "Kane",
-        "age": "23",
-        "gender": "Male",
-        "studentID": 22004938
-      },
-      {
-        "id": "10",
-        "name": "Amy",
-        "age": "22",
-        "gender": "Female",
-        "studentID": 19840294
-      }
-    ]
-  }
+  "students": [
+    {
+      "name": "Lee JunYoung",
+      "age": "123",
+      "id": "1",
+      "gender": "male",
+      "studentID": 22100566
+    },
+    {
+      "id": "2",
+      "name": "James",
+      "age": "100",
+      "gender": "Female",
+      "studentID": 22222222
+    },
+    {
+      "name": "Garen",
+      "age": "27",
+      "gender": "Male",
+      "studentID": 23402049,
+      "id": "3"
+    },
+    {
+      "id": "4",
+      "name": "Stella",
+      "age": "23",
+      "gender": "Female",
+      "studentID": 21120394
+    },
+    {
+      "id": "5",
+      "name": "Jullie",
+      "age": "30",
+      "gender": "Female",
+      "studentID": 22004932
+    },
+    {
+      "id": "6",
+      "name": "John",
+      "age": "24",
+      "gender": "Male",
+      "studentID": 22004958
+    },
+    {
+      "name": "Sam",
+      "age": "21",
+      "gender": "Male",
+      "studentID": 22004933,
+      "id": "7"
+    },
+    {
+      "id": "8",
+      "name": "Jelly",
+      "age": "19",
+      "gender": "Female",
+      "studentID": 24004928
+    },
+    {
+      "id": "9",
+      "name": "Kane",
+      "age": "23",
+      "gender": "Male",
+      "studentID": 22004938
+    },
+    {
+      "id": "10",
+      "name": "Amy",
+      "age": "22",
+      "gender": "Female",
+      "studentID": 19840294
+    },
+    {
+      "id": "11",
+      "name": "Teemo",
+      "age": "15",
+      "gender": "Male",
+      "studentID": 22004494
+    },
+    {
+      "id": "12",
+      "name": "Darius",
+      "age": "34",
+      "gender": "Male",
+      "studentID": 23005834
+    },
+    {
+      "id": "13",
+      "name": "Gwen",
+      "age": "20",
+      "gender": "Female",
+      "studentID": 24018395
+    },
+    {
+      "id": "14",
+      "name": "Kamile",
+      "age": "29",
+      "gender": "Female",
+      "studentID": 22340592
+    },
+    {
+      "id": "15",
+      "name": "Annie",
+      "age": "14",
+      "gender": "Female",
+      "studentID": 22400018
+    },
+    {
+      "id": "16",
+      "name": "Sam",
+      "age": "22",
+      "gender": "Male",
+      "studentID": 22003384
+    }
+  ]
+}
